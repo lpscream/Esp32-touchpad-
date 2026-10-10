@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700" font-family="Helvetica, Arial, sans-serif">
+  <rect width="900" height="700" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#111">Обвязка голой микросхемы mXT112S (32-pin QFN, даташит п. 2.5.1)</text>
+
+  <!-- микросхема -->
+  <rect x="330" y="70" width="240" height="510" rx="6" fill="#f4f0e6" stroke="#6b4a10" stroke-width="2"/>
+  <text x="450" y="360" text-anchor="middle" font-size="22" font-weight="bold" fill="#6b4a10">mXT112S</text>
+  <text x="450" y="384" text-anchor="middle" font-size="12" fill="#6b4a10">QFN-32, 4x4 мм</text>
+  <g font-size="13" fill="#6b4a10" font-weight="bold">
+    <text x="340" y="115">VDD (10)</text>
+    <text x="340" y="185">AVDD (23)</text>
+    <text x="340" y="300">RESET (11)</text>
+    <text x="340" y="425">SDA (13)</text>
+    <text x="340" y="470">SCL (14)</text>
+    <text x="340" y="515">CHG (16)</text>
+    <text x="340" y="560">GND (9, 24, площадка)</text>
+    <text x="560" y="115" text-anchor="end">X0..X13</text>
+    <text x="560" y="300" text-anchor="end">Y0..Y7</text>
+  </g>
+  <g font-size="11" fill="#6b4a10">
+    <text x="560" y="500" text-anchor="end">GPIO0 (15), DBG_DATA (12):</text>
+    <text x="560" y="514" text-anchor="end">не подключать</text>
+  </g>
+
+  <!-- шина 3V3 (слева) -->
+  <g stroke="#c00000" stroke-width="2.5" fill="none">
+    <line x1="24" y1="110" x2="330" y2="110"/>
+    <line x1="24" y1="110" x2="24" y2="345"/>
+    <line x1="24" y1="345" x2="300" y2="345"/>
+    <line x1="310" y1="110" x2="310" y2="180"/>
+    <line x1="205" y1="180" x2="330" y2="180"/>
+  </g>
+  <text x="34" y="100" font-size="13" font-weight="bold" fill="#c00000">3V3 (ESP32)</text>
+  <g fill="#c00000"><circle cx="24" cy="110" r="4"/><circle cx="110" cy="110" r="4"/><circle cx="190" cy="110" r="4"/><circle cx="310" cy="110" r="4"/><circle cx="310" cy="180" r="4"/><circle cx="205" cy="180" r="4"/><circle cx="262" cy="180" r="4"/></g>
+
+  <!-- C1, C2 (VDD) -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <line x1="110" y1="110" x2="110" y2="146"/><line x1="96" y1="146" x2="124" y2="146"/><line x1="96" y1="154" x2="124" y2="154"/><line x1="110" y1="154" x2="110" y2="190"/>
+    <line x1="190" y1="110" x2="190" y2="146"/><line x1="176" y1="146" x2="204" y2="146"/><line x1="176" y1="154" x2="204" y2="154"/><line x1="190" y1="154" x2="190" y2="190"/>
+    <line x1="110" y1="190" x2="190" y2="190"/><line x1="150" y1="190" x2="150" y2="204"/>
+  </g>
+  <g stroke="#111" stroke-width="2"><line x1="136" y1="204" x2="164" y2="204"/><line x1="142" y1="210" x2="158" y2="210"/><line x1="147" y1="216" x2="153" y2="216"/></g>
+  <g font-size="12" fill="#222" text-anchor="middle"><text x="110" y="136">C1 1 мкФ</text><text x="190" y="136">C2 100 нФ</text></g>
+
+  <!-- C3, C4 (AVDD) -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <line x1="205" y1="180" x2="205" y2="216"/><line x1="191" y1="216" x2="219" y2="216"/><line x1="191" y1="224" x2="219" y2="224"/><line x1="205" y1="224" x2="205" y2="250"/>
+    <line x1="262" y1="180" x2="262" y2="216"/><line x1="248" y1="216" x2="276" y2="216"/><line x1="248" y1="224" x2="276" y2="224"/><line x1="262" y1="224" x2="262" y2="250"/>
+    <line x1="205" y1="250" x2="262" y2="250"/><line x1="233" y1="250" x2="233" y2="262"/>
+  </g>
+  <g stroke="#111" stroke-width="2"><line x1="219" y1="262" x2="247" y2="262"/><line x1="225" y1="268" x2="241" y2="268"/><line x1="230" y1="274" x2="236" y2="274"/></g>
+  <g font-size="12" fill="#222"><text x="197" y="242" text-anchor="end" font-size="11">C3 100 нФ</text><text x="270" y="242" font-size="11">C4 1 мкФ</text></g>
+
+  <!-- RESET -->
+  <line x1="40" y1="295" x2="330" y2="295" stroke="#7b1fa2" stroke-width="2.5"/>
+  <text x="45" y="287" font-size="13" font-weight="bold" fill="#7b1fa2">GPIO5 (RESET)</text>
+
+  <!-- I2C + CHG -->
+  <g stroke-width="2.5" fill="none">
+    <line x1="40" y1="420" x2="330" y2="420" stroke="#1565c0"/>
+    <line x1="40" y1="465" x2="330" y2="465" stroke="#2e7d32"/>
+    <line x1="40" y1="510" x2="330" y2="510" stroke="#ef6c00"/>
+  </g>
+  <text x="45" y="412" font-size="13" font-weight="bold" fill="#1565c0">GPIO8 (SDA)</text>
+  <text x="45" y="457" font-size="13" font-weight="bold" fill="#2e7d32">GPIO9 (SCL)</text>
+  <text x="45" y="502" font-size="13" font-weight="bold" fill="#ef6c00">GPIO4 (CHG)</text>
+  <g stroke="#333" stroke-width="2" fill="#fff">
+    <rect x="192" y="368" width="16" height="30"/><rect x="242" y="368" width="16" height="30"/><rect x="292" y="368" width="16" height="30"/>
+  </g>
+  <g stroke="#c00000" stroke-width="2.5"><line x1="200" y1="345" x2="200" y2="368"/><line x1="250" y1="345" x2="250" y2="368"/><line x1="300" y1="345" x2="300" y2="368"/></g>
+  <g stroke-width="2.5"><line x1="200" y1="398" x2="200" y2="420" stroke="#1565c0"/><line x1="250" y1="398" x2="250" y2="465" stroke="#2e7d32"/><line x1="300" y1="398" x2="300" y2="510" stroke="#ef6c00"/></g>
+  <g fill="#c00000"><circle cx="200" cy="345" r="4"/><circle cx="250" cy="345" r="4"/><circle cx="300" cy="345" r="4"/></g>
+  <g fill="#1565c0"><circle cx="200" cy="420" r="4"/></g><g fill="#2e7d32"><circle cx="250" cy="465" r="4"/></g><g fill="#ef6c00"><circle cx="300" cy="510" r="4"/></g>
+  <g font-size="11" fill="#222" text-anchor="end"><text x="186" y="388">4,7к</text><text x="236" y="388">4,7к</text><text x="286" y="388">10к</text></g>
+
+  <!-- GND -->
+  <line x1="40" y1="555" x2="330" y2="555" stroke="#111" stroke-width="2.5"/>
+  <text x="45" y="547" font-size="13" font-weight="bold" fill="#111">GND (ESP32)</text>
+
+  <!-- сенсор -->
+  <g stroke="#555" stroke-width="2.5"><line x1="570" y1="110" x2="680" y2="110"/><line x1="570" y1="295" x2="680" y2="295"/></g>
+  <rect x="680" y="80" width="200" height="240" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="780" y="180" text-anchor="middle" font-size="15" font-weight="bold" fill="#2e7d32">Сенсорная матрица</text>
+  <text x="780" y="202" text-anchor="middle" font-size="12" fill="#2e7d32">до 14 X x 8 Y</text>
+  <text x="780" y="220" text-anchor="middle" font-size="12" fill="#2e7d32">X - передатчики, Y - приёмники</text>
+
+  <g font-size="13" fill="#222">
+    <text x="40" y="610">• Конденсаторы: керамика X7R/X5R, дорожка до выводов не длиннее 5 мм. C1/C2 - у VDD, C3/C4 - у AVDD.</text>
+    <text x="40" y="630">• Под корпусом QFN только земля: площадку припаять к GND, других дорожек под микросхемой не вести.</text>
+    <text x="40" y="650">• AVDD питает аналоговую часть: нужен чистый 3,3 В (пульсации не более ±25 мВ).</text>
+    <text x="40" y="670">• RESET не должен превышать VDD. Подключение X/Y зависит от конструкции сенсора (Atmel QTAN0054/QTAN0080).</text>
+    <text x="40" y="690">• X12/MID1 и X13/MID0 - либо X-линии матрицы, либо ID модуля (даташит п. 4.5).</text>
+  </g>
+</svg>

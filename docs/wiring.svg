@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560" font-family="Helvetica, Arial, sans-serif">
+  <rect width="900" height="560" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#111">Схема подключения: тачпад mXT112S + ESP32-S3</text>
+
+  <!-- ESP32-S3 -->
+  <rect x="40" y="80" width="190" height="400" rx="8" fill="#eef3fb" stroke="#1f3a68" stroke-width="2"/>
+  <text x="135" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f3a68">ESP32-S3</text>
+  <text x="135" y="128" text-anchor="middle" font-size="12" fill="#1f3a68">DevKit (BLE HID)</text>
+
+  <!-- Тачпад -->
+  <rect x="670" y="80" width="190" height="400" rx="8" fill="#f4f0e6" stroke="#6b4a10" stroke-width="2"/>
+  <text x="765" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="#6b4a10">Тачпад mXT112S</text>
+  <text x="765" y="128" text-anchor="middle" font-size="12" fill="#6b4a10">модуль / FPC-разъём</text>
+
+  <!-- Подтяжка: шина 3V3 -->
+  <g stroke="#c00000" stroke-width="2.5" fill="none">
+    <line x1="230" y1="170" x2="670" y2="170"/>
+    <line x1="300" y1="170" x2="300" y2="150"/>
+    <line x1="300" y1="150" x2="540" y2="150"/>
+  </g>
+  <circle cx="300" cy="170" r="4" fill="#c00000"/>
+  <text x="420" y="142" text-anchor="middle" font-size="12" fill="#c00000">подтяжки к 3V3</text>
+
+  <!-- Сигнальные линии -->
+  <g stroke-width="2.5" fill="none">
+    <line x1="230" y1="240" x2="670" y2="240" stroke="#1565c0"/>
+    <line x1="230" y1="290" x2="670" y2="290" stroke="#2e7d32"/>
+    <line x1="230" y1="340" x2="670" y2="340" stroke="#ef6c00"/>
+    <line x1="230" y1="390" x2="670" y2="390" stroke="#7b1fa2"/>
+    <line x1="230" y1="440" x2="670" y2="440" stroke="#111"/>
+  </g>
+
+  <!-- Резисторы подтяжки -->
+  <g stroke="#333" stroke-width="2" fill="#fff">
+    <line x1="380" y1="150" x2="380" y2="240" stroke="#c00000" stroke-width="2.5"/>
+    <rect x="372" y="180" width="16" height="40"/>
+    <line x1="440" y1="150" x2="440" y2="290" stroke="#c00000" stroke-width="2.5"/>
+    <rect x="432" y="205" width="16" height="40"/>
+    <line x1="500" y1="150" x2="500" y2="340" stroke="#c00000" stroke-width="2.5"/>
+    <rect x="492" y="240" width="16" height="40"/>
+  </g>
+  <g fill="#c00000">
+    <circle cx="380" cy="150" r="4"/><circle cx="440" cy="150" r="4"/><circle cx="500" cy="150" r="4"/>
+  </g>
+  <g fill="#1565c0"><circle cx="380" cy="240" r="4"/></g>
+  <g fill="#2e7d32"><circle cx="440" cy="290" r="4"/></g>
+  <g fill="#ef6c00"><circle cx="500" cy="340" r="4"/></g>
+  <g font-size="12" fill="#222">
+    <text x="394" y="204">4.7 k</text>
+    <text x="454" y="229">4.7 k</text>
+    <text x="514" y="264">10 k</text>
+  </g>
+
+  <!-- Подписи выводов ESP32 -->
+  <g font-size="14" fill="#1f3a68" font-weight="bold">
+    <text x="50" y="175">3V3</text>
+    <text x="50" y="245">GPIO8</text>
+    <text x="50" y="295">GPIO9</text>
+    <text x="50" y="345">GPIO4</text>
+    <text x="50" y="395">GPIO5</text>
+    <text x="50" y="445">GND</text>
+  </g>
+  <g font-size="12" fill="#1f3a68">
+    <text x="215" y="236" text-anchor="end">I2C SDA</text>
+    <text x="215" y="286" text-anchor="end">I2C SCL</text>
+    <text x="215" y="336" text-anchor="end">вход</text>
+    <text x="215" y="386" text-anchor="end">выход</text>
+  </g>
+
+  <!-- Подписи выводов тачпада -->
+  <g font-size="14" fill="#6b4a10" font-weight="bold">
+    <text x="850" y="175" text-anchor="end">VDD + AVDD</text>
+    <text x="850" y="245" text-anchor="end">SDA</text>
+    <text x="850" y="295" text-anchor="end">SCL</text>
+    <text x="850" y="345" text-anchor="end">CHG</text>
+    <text x="850" y="395" text-anchor="end">RESET</text>
+    <text x="850" y="445" text-anchor="end">GND</text>
+  </g>
+  <g font-size="12" fill="#6b4a10">
+    <text x="685" y="236">адрес 0x4A</text>
+    <text x="685" y="336">прерывание (low)</text>
+    <text x="685" y="386">активный low</text>
+  </g>
+
+  <!-- Примечания -->
+  <g font-size="13" fill="#222">
+    <text x="40" y="510">• Питание только 3,3 В (VDD/AVDD макс. 3,6 В; 5 В подавать нельзя). Все «земли» объединить.</text>
+    <text x="40" y="530">• Если на модуле уже есть подтяжки SDA/SCL/CHG - внешние можно не ставить. Пересечения линий без точки - не соединены.</text>
+    <text x="40" y="550">• Провода I2C делайте короткими (до 15-20 см). Обязательна общая «земля» модуля и ESP32.</text>
+  </g>
+</svg>
