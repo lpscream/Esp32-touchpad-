@@ -74,7 +74,8 @@ class Device {
   bool readObject(uint8_t type, uint16_t offset, uint8_t* buf, uint8_t len);
   bool writeObject(uint8_t type, uint16_t offset, const uint8_t* buf, uint8_t len);
 
-  void dump(Print& out);
+  // full = true: дополнительно печатает байты всех объектов (для сверки конфигурации)
+  void dump(Print& out, bool full = false);
   bool applySafeDefaults();
   bool calibrate();
   bool saveToNvm();

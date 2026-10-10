@@ -83,7 +83,7 @@ static bool initTouchpad() {
   if (!touch.init()) return false;
 
 #if DEBUG_SERIAL
-  touch.dump(Serial);
+  touch.dump(Serial, MXT_DUMP_OBJECTS);
 #endif
   if (!touch.hasTouchObject()) return false;
 

@@ -170,7 +170,7 @@ bool Device::saveToNvm() {
   return writeObject(T6_COMMAND, T6_BACKUPNV_OFS, &magic, 1);
 }
 
-void Device::dump(Print& out) {
+void Device::dump(Print& out, bool full) {
   out.printf("mXT: family=0x%02X variant=0x%02X version=0x%02X build=0x%02X matrix=%ux%u objects=%u\n",
              info_.family, info_.variant, info_.version, info_.build, info_.xsize, info_.ysize,
              info_.objects);
@@ -192,6 +192,21 @@ void Device::dump(Print& out) {
     readObject(T9_TOUCH, T9_NUMTOUCH_OFS, &num, 1);
     out.printf("T9 touch: ctrl=0x%02X%s size=%u,%u orient=0x%02X numtouch=%u range=%ux%u\n", ctrl,
                (ctrl & 1) ? "" : "  <-- ENABLE bit is off!", xs, ys, ori, num, xRange_, yRange_);
+    if (xs == 0 || ys == 0 || xRange_ == 0 || yRange_ == 0 || num == 0)
+      out.println("!!! T9 не сконфигурирован (размер/диапазон/numtouch = 0): в энергонезависимой памяти "
+                  "чипа, вероятно, нет конфигурации. Без неё касания не определяются.");
+    if (full) {
+      for (uint8_t i = 0; i < objectCount_; i++) {
+        const Object& o = objects_[i];
+        out.printf("  T%u:", o.type);
+        for (uint8_t k = 0; k < o.size; k++) {
+          uint8_t v;
+          if (!read(o.addr + k, &v, 1)) break;
+          out.printf(" %02X", v);
+        }
+        out.println();
+      }
+    }
   } else {
     out.println("T9 not found - this firmware is not supported (T100?)");
   }
