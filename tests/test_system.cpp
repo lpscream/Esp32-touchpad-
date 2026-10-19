@@ -143,7 +143,21 @@ static void test_reset_message_clears_fingers() {
   CHECK(!fingers[0].down, "finger must be cleared on chip reset");
 }
 
+static void test_alt_address_autodetect() {
+  g_mxt.setup(4095, 4095);
+  g_mxt.addr = 0x4B;
+  mxt::Device dev;
+  dev.configure(Wire, 0, PIN_TP_CHG, -1);
+  CHECK(dev.init() && dev.address() == 0x4B, "auto-detect must find 0x4B (addr=0x%02X)", dev.address());
+  dev.configure(Wire, 0x4A, PIN_TP_CHG, -1);
+  CHECK(!dev.init(), "fixed 0x4A must fail when chip is at 0x4B");
+  dev.configure(Wire, 0x4B, PIN_TP_CHG, -1);
+  CHECK(dev.init() && dev.address() == 0x4B, "fixed 0x4B");
+  g_mxt.addr = 0x4A;
+}
+
 int main() {
+  test_alt_address_autodetect();
   test_decode();
   test_init_and_table();
   test_move_and_tap_over_ble();

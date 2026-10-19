@@ -22,7 +22,8 @@ constexpr uint8_t T9_YRANGE_OFS = 20;  // LSB, MSB
 
 void Device::configure(TwoWire& wire, uint8_t addr, int chgPin, int resetPin) {
   wire_ = &wire;
-  addr_ = addr;
+  cfgAddr_ = addr;
+  addr_ = addr ? addr : 0x4A;
   chg_ = chgPin;
   reset_ = resetPin;
   pinMode(chg_, INPUT_PULLUP);  // основная подтяжка - внешний резистор 10 кОм
@@ -64,6 +65,16 @@ bool Device::write(uint16_t addr, const uint8_t* buf, uint8_t len) {
 }
 
 bool Device::init() {
+  // Контроллеры maXTouch бывают с адресом 0x4A или 0x4B (зависит от исполнения/выбора адреса)
+  const uint8_t candidates[2] = {0x4A, 0x4B};
+  for (uint8_t i = 0; i < (cfgAddr_ ? 1 : 2); i++) {
+    addr_ = cfgAddr_ ? cfgAddr_ : candidates[i];
+    if (initAt()) return true;
+  }
+  return false;
+}
+
+bool Device::initAt() {
   t5_ = t6_ = t9_ = nullptr;
   objectCount_ = 0;
   msgSize_ = 0;

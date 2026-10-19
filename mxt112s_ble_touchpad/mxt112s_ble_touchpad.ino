@@ -83,6 +83,7 @@ static bool initTouchpad() {
   if (!touch.init()) return false;
 
 #if DEBUG_SERIAL
+  LOG("mXT найден по адресу 0x%02X\n", touch.address());
   touch.dump(Serial, MXT_DUMP_OBJECTS);
 #endif
   if (!touch.hasTouchObject()) return false;
@@ -178,7 +179,7 @@ void setup() {
   touch.configure(Wire, MXT_I2C_ADDR, PIN_TP_CHG, PIN_TP_RESET);
   touchReady = initTouchpad();
   if (!touchReady) {
-    LOG("Тачпад не отвечает по адресу 0x%02X\n", MXT_I2C_ADDR);
+    LOG("Тачпад не отвечает (адрес %s)\n", MXT_I2C_ADDR ? "задан вручную" : "0x4A/0x4B");
     scanI2c();
   }
   lastInitTry = millis();

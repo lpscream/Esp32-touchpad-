@@ -9,7 +9,7 @@
 #define PIN_TP_RESET 5   // вход RESET тачпада; -1, если не подключён
 
 #define I2C_FREQ_HZ 400000UL   // максимум для mXT112S - 400 кГц
-#define MXT_I2C_ADDR 0x4A      // даташит, п. 5.2.1
+#define MXT_I2C_ADDR 0         // 0 = автоопределение (0x4A, затем 0x4B); или задайте адрес вручную
 
 // ---------------------------------------------------------------- Bluetooth
 #define BLE_DEVICE_NAME "ESP32 Touchpad"

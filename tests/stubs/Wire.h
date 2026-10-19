@@ -12,6 +12,7 @@ struct FakeMxt {
   std::deque<std::vector<uint8_t>> queue;  // сообщения (T5_SIZE-1 байт)
   uint16_t ptr = 0;
   bool present = true;
+  uint8_t addr = 0x4A;
   uint8_t t5Size = 9;  // как в таблице: размер T5 вместе с байтом CRC
 
   // Таблица: T44, T5, T6, T7, T9. Report ID: T6=1, T9=2..11.
@@ -67,9 +68,9 @@ class TwoWire {
     n_++;
     return 1;
   }
-  uint8_t endTransmission() { return (tx_ == 0x4A && g_mxt.present) ? 0 : 2; }
+  uint8_t endTransmission() { return (tx_ == g_mxt.addr && g_mxt.present) ? 0 : 2; }
   uint8_t requestFrom(uint8_t a, uint8_t len) {
-    if (a != 0x4A || !g_mxt.present) return 0;
+    if (a != g_mxt.addr || !g_mxt.present) return 0;
     rx_.clear();
     if (g_mxt.ptr == FakeMxt::T5_ADDR) {  // чтение T5 вынимает сообщение из очереди
       std::vector<uint8_t> m(len, 0xFF);

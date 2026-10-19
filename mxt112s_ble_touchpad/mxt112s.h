@@ -52,7 +52,8 @@ class Device {
   void configure(TwoWire& wire, uint8_t addr, int chgPin, int resetPin);
 
   void hardReset();                // импульс на RESET и ожидание готовности
-  bool init();                     // читает блок информации и таблицу объектов
+  bool init();                     // ищет чип (0x4A/0x4B), читает блок информации и таблицу объектов
+  uint8_t address() const { return addr_; }
   bool changeAsserted() const { return digitalRead(chg_) == LOW; }
 
   // Читает одно сообщение T5. false - ошибка I2C. msg[0]==0xFF - сообщений нет.
@@ -92,6 +93,8 @@ class Device {
 
   TwoWire* wire_ = nullptr;
   uint8_t addr_ = 0x4A;
+  uint8_t cfgAddr_ = 0;  // 0 = автоопределение
+  bool initAt();
   int chg_ = -1, reset_ = -1;
 
   Info info_ = {};
